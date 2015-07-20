@@ -360,6 +360,12 @@
     </family>
     <family>
         <fileset>
+            <file lang="ja">mplus-1m-regular.ttf</file>
+            <file lang="ja">mplus-1m-bold.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
             <file lang="zh-Hans">NotoSansHans-Regular.otf</file>
         </fileset>
     </family>

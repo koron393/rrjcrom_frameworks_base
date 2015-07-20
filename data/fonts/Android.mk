@@ -59,6 +59,24 @@ LOCAL_MODULE_PATH := $(TARGET_OUT)/fonts
 include $(BUILD_PREBUILT)
 extra_font_files += MTLmr3m.ttf
 
+include $(CLEAR_VARS)
+LOCAL_MODULE := mplus-1m-regular.ttf
+LOCAL_SRC_FILES := $(LOCAL_MODULE)
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_PATH := $(TARGET_OUT)/fonts
+include $(BUILD_PREBUILT)
+extra_font_files += mplus-1m-regular.ttf
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := mplus-1m-bold.ttf
+LOCAL_SRC_FILES := $(LOCAL_MODULE)
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_PATH := $(TARGET_OUT)/fonts
+include $(BUILD_PREBUILT)
+extra_font_files += mplus-1m-bold.ttf
+
 endif  # !SMALLER_FONT_FOOTPRINT
 
 ################################

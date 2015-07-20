@@ -302,6 +302,10 @@
     <family>
         <font weight="400" style="normal">Lohit-Odia.ttf</font>
     </family>
+    <family lang="ja">
+        <font weight="400" style="normal">mplus-1m-regular.ttf</font>
+        <font weight="700" style="normal">mplus-1m-bold.ttf</font>
+    </family>
     <family lang="zh-Hans">
         <font weight="400" style="normal">NotoSansHans-Regular.otf</font>
     </family>
