@@ -832,6 +832,10 @@ public class KeyguardViewMediator extends SystemUI {
                 android.Manifest.permission.CONTROL_KEYGUARD, null);
         mContext.registerReceiver(mBroadcastReceiver, new IntentFilter(KEYGUARD_SERVICE_ACTION_STATE_CHANGE),
                 android.Manifest.permission.CONTROL_KEYGUARD, null);
+        IntentFilter myfilter = new IntentFilter();
+        myfilter.addAction(DELAYED_KEYGUARD_ACTION);
+        myfilter.addAction(Intent.ACTION_JCROM_THEME_CHANGE);
+        mContext.registerReceiver(mBroadcastReceiver, myfilter);
 
         mKeyguardDisplayManager = new KeyguardDisplayManager(mContext);
 
@@ -1538,6 +1542,8 @@ public class KeyguardViewMediator extends SystemUI {
                         doKeyguardLocked(null);
                     }
                 }
+            } else if ((intent.getAction()).equals(Intent.ACTION_JCROM_THEME_CHANGE)) {
+                themeLoad();
             } else if (DISMISS_KEYGUARD_SECURELY_ACTION.equals(intent.getAction())) {
                 synchronized (KeyguardViewMediator.this) {
                     if (mScreenOn) {
@@ -2021,6 +2027,33 @@ public class KeyguardViewMediator extends SystemUI {
             this.fadeoutDuration = fadeoutDuration;
         }
     }
+    
+    private void themeLoad() {
+        ContentResolver cr = mContext.getContentResolver();
+        mLockSounds = new SoundPool(1, AudioManager.STREAM_SYSTEM, 0);
+        String soundPath = Settings.Global.getString(cr, Settings.Global.LOCK_SOUND);
+        if (soundPath != null) {
+            mLockSoundId = mLockSounds.load(soundPath, 1);
+        }
+        if (soundPath == null || mLockSoundId == 0) {
+            Log.w(TAG, "failed to load lock sound from " + soundPath);
+        }
+        soundPath = Settings.Global.getString(cr, Settings.Global.UNLOCK_SOUND);
+        if (soundPath != null) {
+            mUnlockSoundId = mLockSounds.load(soundPath, 1);
+        }
+        if (soundPath == null || mUnlockSoundId == 0) {
+            Log.w(TAG, "failed to load unlock sound from " + soundPath);
+        }
+        soundPath = Settings.Global.getString(cr, Settings.Global.TRUSTED_SOUND);
+        if (soundPath != null) {
+            mTrustedSoundId = mLockSounds.load(soundPath, 1);
+        }
+        if (soundPath == null || mTrustedSoundId == 0) {
+            Log.w(TAG, "failed to load trusted sound from " + soundPath);
+        }
+    }
+ }
 
     private void setShowingLocked(boolean showing) {
         if (showing != mShowing) {

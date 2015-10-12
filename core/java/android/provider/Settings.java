@@ -7482,6 +7482,8 @@ public final class Settings {
          * @hide
          */
         public static final String VOLUME_LINK_NOTIFICATION = "volume_link_notification";
+        
+        public static final String INSTALL_BLACK_LIST = "install_black_list";
 
         /**
          * Performance profile

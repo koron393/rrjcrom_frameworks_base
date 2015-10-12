@@ -51,6 +51,7 @@ import android.os.Bundle;
 import android.os.Debug;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemProperties;
 import android.os.Vibrator;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
@@ -93,6 +94,8 @@ public class VolumePanel extends Handler implements DemoMode {
     private static final boolean BLUR_UI_ENABLED = true;
 
     private static final int PLAY_SOUND_DELAY = AudioService.PLAY_SOUND_DELAY;
+    
+    private static final String VOICE_CAPABLE_PROPERTY = "persist.sys.voice.capable";
 
     /**
      * The delay before vibrating. This small period exists so if the user is
@@ -463,8 +466,9 @@ public class VolumePanel extends Handler implements DemoMode {
         mToneGenerators = new ToneGenerator[AudioSystem.getNumStreamTypes()];
         mVibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         mHasVibrator = mVibrator != null && mVibrator.hasVibrator();
-        mVoiceCapable = context.getResources().getBoolean(
-                            com.android.internal.R.bool.config_voice_capable);
+        // mVoiceCapable = context.getResources().getBoolean(
+        //                    com.android.internal.R.bool.config_voice_capable);
+        mVoiceCapable = SystemProperties.getBoolean(VOICE_CAPABLE_PROPERTY, true);
 
         mVolumeLinkNotification = Settings.Secure.getInt(mContext.getContentResolver(),
                 Settings.Secure.VOLUME_LINK_NOTIFICATION, 1) == 1;

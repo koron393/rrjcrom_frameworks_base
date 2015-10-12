@@ -39,6 +39,7 @@ public class BarTransitions {
 
     public static final boolean HIGH_END = ActivityManager.isHighEndGfx();
 
+    public static final int MODE_INIT = -1;
     public static final int MODE_OPAQUE = 0;
     public static final int MODE_SEMI_TRANSPARENT = 1;
     public static final int MODE_TRANSLUCENT = 2;
@@ -120,6 +121,7 @@ public class BarTransitions {
     }
 
     public static String modeToString(int mode) {
+        if (mode == MODE_INIT) return "MODE_INIT";
         if (mode == MODE_OPAQUE) return "MODE_OPAQUE";
         if (mode == MODE_SEMI_TRANSPARENT) return "MODE_SEMI_TRANSPARENT";
         if (mode == MODE_TRANSLUCENT) return "MODE_TRANSLUCENT";
@@ -148,7 +150,7 @@ public class BarTransitions {
         private Drawable mGradient;
         private final TimeInterpolator mInterpolator;
 
-        private int mMode = -1;
+        private int mMode = MODE_INIT;
         private boolean mAnimating;
         private long mStartTime;
         private long mEndTime;

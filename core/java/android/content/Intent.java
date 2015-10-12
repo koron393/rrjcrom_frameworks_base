@@ -2933,6 +2933,12 @@ public class Intent implements Parcelable, Cloneable {
 
     /** {@hide} */
     public static final String ACTION_MASTER_CLEAR = "android.intent.action.MASTER_CLEAR";
+    
+    /**
+     * JCROM
+     */
+    public static final String ACTION_JCROM_THEME_CHANGE = "android.intent.action.JCROM_THEME_CHANGE";
+
 
     /** {@hide} */
     public static final String ACTION_DOZE_PULSE_STARTING =
