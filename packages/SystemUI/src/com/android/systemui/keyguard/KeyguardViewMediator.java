@@ -2053,7 +2053,6 @@ public class KeyguardViewMediator extends SystemUI {
             Log.w(TAG, "failed to load trusted sound from " + soundPath);
         }
     }
- }
 
     private void setShowingLocked(boolean showing) {
         if (showing != mShowing) {

@@ -301,6 +301,13 @@ public class NotificationPanelView extends PanelView implements
         });
         
         themeLoad();
+        
+        mQSCSwitch = Settings.System.getInt(getContext().getContentResolver(),
+                Settings.System.QS_COLOR_SWITCH, 0) == 1;
+
+        if (mQSCSwitch) {
+            setQSBackgroundColor();
+        }
 
     }
 
@@ -344,13 +351,6 @@ public class NotificationPanelView extends PanelView implements
             return prop.getProperty(propertyName);
         } catch (IOException e) {
             return null;
-        }
-
-        mQSCSwitch = Settings.System.getInt(getContext().getContentResolver(),
-                Settings.System.QS_COLOR_SWITCH, 0) == 1;
-
-        if (mQSCSwitch) {
-            setQSBackgroundColor();
         }
     }
 

@@ -1272,7 +1272,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         updateCustomRecentsLongPressHandler(true);
         
-        ntentFilter jcfilter = new IntentFilter();
+        IntentFilter jcfilter = new IntentFilter();
         jcfilter.addAction(Intent.ACTION_JCROM_THEME_CHANGE);
         mContext.registerReceiver(new JCReceiver(), jcfilter);
     }

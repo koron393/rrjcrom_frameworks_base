@@ -590,8 +590,8 @@ public class AudioService extends IAudioService.Stub {
         mContentResolver = context.getContentResolver();
         mAppOps = (AppOpsManager)context.getSystemService(Context.APP_OPS_SERVICE);
 
-        //mVoiceCapable = context.getResources().getBoolean(
-        //                    com.android.internal.R.bool.config_voice_capable);
+        mVoiceCapable = context.getResources().getBoolean(
+                            com.android.internal.R.bool.config_voice_capable);
 
         //if (mVoiceCapable) {
         if (SystemProperties.getBoolean(VOICE_CAPABLE_PROPERTY, true)) {
@@ -4499,6 +4499,7 @@ public class AudioService extends IAudioService.Stub {
                 } else {
                     MediaPlayer mediaPlayer = new MediaPlayer();
                     try {
+                        String sound_effects_path;
                         StringBuilder builder = new StringBuilder();
                         String root_path;
                         String filePath;
