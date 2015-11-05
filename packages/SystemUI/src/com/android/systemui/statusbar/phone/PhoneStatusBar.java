@@ -2201,8 +2201,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         lp.packageName = mContext.getPackageName();
         lp.windowAnimations = R.style.Animation_StatusBar_HeadsUp;
 
-        if(mHeadsUpNotificationView.getWindowToken() == null) {
+        if(mHeadsUpNotificationView.getWindowToken() == null && (!mHeadsUpNotificationView.isAttachedToWindow())) {
             mWindowManager.addView(mHeadsUpNotificationView, lp);
+        } else {
+            mWindowManager.updateViewLayout(mHeadsUpNotificationView, lp);
         }
     }
 
@@ -4699,7 +4701,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         makeStatusBarView();
         repositionNavigationBar();
-        addHeadsUpView();
+        mHeadsUpObserver.onChange(true);
+        if (mUseHeadsUp) {
+            addHeadsUpView();
+        }
         attachPieContainer(isPieEnabled());
         if (mNavigationBarView != null) {
             mNavigationBarView.updateResources(getNavbarThemedResources());
